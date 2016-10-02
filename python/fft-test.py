@@ -54,8 +54,8 @@ while True:
     stickdata = array('B',[])
     for h in leds:
         r, g, b = colorsys.hsv_to_rgb(h, 1., max(0,(h/2)-0.2))#scale)
-        r, g, b = r * 255, g * 255, b * 255
+        r, g, b =  255*r,  255*g,  255*b
         stickdata.extend((int(r), int(g), int(b)))
-    sock.sendto(stickdata,("10.23.42.30", 2342))
+    sock.sendto(stickdata,("192.168.4.1", 2342))
     data_in.pause(0)
 

@@ -1,21 +1,17 @@
 ws2812.init()
 
-value = true
-function start_testblink()
-  tmr.alarm(0, 500, 1, function ()
-    if (value) then
-      ws2812.write(string.char(255, 0, 0, 255, 0, 0))	    
-    else
-      ws2812.write(string.char(0, 0, 255, 0, 0, 255))	    
-    end
-    value = not value
-  end )
-end
+-- set up a timer
+-- timer function: begin displaying a simple pattern
 
 function start_udp_server()
   s = net.createServer(net.UDP)
+  -- can we buffer this and use a proper header?
+  -- what about the ip display stuff the ccc hannover guys did?
   s:on("receive",function(s,c) 
     ws2812.write(c)
+    -- if timer
+    -- reset the timer
+    -- stop the pattern
   end)
   s:listen(2342)
 end
